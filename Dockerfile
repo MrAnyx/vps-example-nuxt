@@ -11,4 +11,5 @@ FROM base as prod
 RUN npm install -g pm2
 COPY --from=build /app/.output .
 COPY --from=build /app/ecosystem.config.cjs .
-CMD ["npm run", "serve"]
+EXPOSE 3000
+CMD ["pm2", "start", "ecosystem.config.cjs"]
