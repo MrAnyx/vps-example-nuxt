@@ -9,7 +9,7 @@ RUN pnpm build
 
 FROM base as prod
 RUN npm install -g pm2
-COPY --from=build /app/.output /app
+COPY --from=build /app/.output /app/.output
 COPY --from=build /app/ecosystem.config.cjs /app
 EXPOSE 3000
 CMD ["pm2", "start", "ecosystem.config.cjs"]
